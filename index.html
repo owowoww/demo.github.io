@@ -136,6 +136,49 @@
 
     
     <script type="text/javascript">
+      github_url = window.location.origin
+      repo_name = 'demo.github.io'
+
+      let p_area = document.getElementsByTagName('p')[0]
+
+      function chagneTxt(btnObj) {
+        text_value = btnObj.textContent
+        if (text_value == 'rain') {
+            csv_file_url = github_url + '/' + repo_name + '/data/' + 'rain_tk9.csv'
+            let content = []
+            Papa.parse(csv_file_url, {
+            download: true,
+            header: true,
+            step: function(results) {
+                content.push(results.data)
+            },
+            complete: function() {
+                // do something
+                console.log(content)
+                p_area.textContent = 'Rain Data Has Loaded, See console'
+            }
+            });
+        } else if (text_value == 'temperature') {
+            csv_file_url = github_url + '/' + repo_name + '/data/' + 'temperature_tk9.csv'
+            let content = []
+            Papa.parse(csv_file_url, {
+            download: true,
+            header: true,
+            step: function(results) {
+                content.push(results.data)
+            },
+            complete: function() {
+                // do something
+                console.log(content)
+                p_area.textContent = 'Temperature Data Has Loaded, See console'
+            }
+            });
+        } else {
+            p_area.textContent = 'OrgText'
+        }
+        console.log()
+      }
+
       function readCsvFile(){
         var results2
         results = Papa.parse('rain_tk9.csv',{
