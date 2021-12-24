@@ -140,6 +140,9 @@
           var data = $.csv.toArrays(text);
           document.write(data[1]);
       }
+      fetch('data/rain_tk9.csv')
+      .then(response => response.text())
+      .then(text => console.log(text))
 
       reader.readAsText('demo/rain_tk9.csv');
 
